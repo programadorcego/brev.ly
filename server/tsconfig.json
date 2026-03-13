@@ -21,7 +21,7 @@
     "moduleResolution": "bundler",
 
     "paths": {
-      "@/*": ["./src/"]
+      "@/*": ["./src/*"]
     }
   }
 }
