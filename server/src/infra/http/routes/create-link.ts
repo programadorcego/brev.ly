@@ -13,13 +13,12 @@ export const createLinkRoute: FastifyPluginAsyncZod = async server => {
                 summary: "Create a short link",
                 body: z.object({
                     originalLink: z.string().url(),
-                    shortLink: z.string().regex(/^[a-zA-Z0-9_\-]+$/),
+                    shortLink: z.string(),
                 }),
                 response: {
                     201: z.null().describe("Short link created"),
-                    409: z
-                        .object({ message: z.string() })
-                        .describe("Short link already exists"),
+                    400: z.object({ message: z.string() }),
+                    409: z.object({ message: z.string() }),
                 },
             },
         },
@@ -36,6 +35,10 @@ export const createLinkRoute: FastifyPluginAsyncZod = async server => {
             const error = result.left;
 
             switch(error.constructor.name) {
+                case "InvalidShortLinkFormatError" :
+                    return reply.status(400).send({ message: error.message });
+                break;
+
                 case "ShortLinkAlreadyExistsError" :
                     return reply.status(409).send({ message: error.message });
                 break;

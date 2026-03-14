@@ -4,21 +4,26 @@ import { Either, makeLeft, makeRight } from "@/infra/shared/either";
 import { z } from "zod";
 import { ShortLinkAlreadyExistsError } from "./errors/short-link-already-exists";
 import { eq } from "drizzle-orm";
+import { InvalidShortLinkFormatError } from "./errors/invalid-short-link-format";
 
 const createLinkSchema = z.object({
     originalLink: z.string().url(),
-    shortLink: z.string().regex(/^[a-zA-Z0-9_\-]+$/),
+    shortLink: z.string(),
 });
 
 type CreateLinkSchema = z.infer<typeof createLinkSchema>;
 
-export async function createLink(data: CreateLinkSchema): Promise<Either<ShortLinkAlreadyExistsError, {
+export async function createLink(data: CreateLinkSchema): Promise<Either<InvalidShortLinkFormatError | ShortLinkAlreadyExistsError, {
     id: string,
     originalLink: string,
     hits: number | null,
     createdAt: Date,
 }>> {
     const { originalLink, shortLink } = createLinkSchema.parse(data);
+
+    if (!/^[a-zA-Z0-9_-]+$/.test(shortLink)) {
+        return makeLeft(new InvalidShortLinkFormatError());
+    }
 
     const existingLink = (await db
         .select({ id: schema.links.id })
