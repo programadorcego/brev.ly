@@ -44,5 +44,8 @@ export async function increaseHit(data: IncreaseHitSchema): Promise<Either<Resou
             hits: sql`${link.hits} + 1`,
         });
 
-    return makeRight(link);
+    return makeRight({
+        ...link,
+        hits: link.hits! + 1,
+    });
 }

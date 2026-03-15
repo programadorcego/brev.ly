@@ -8,6 +8,7 @@ import { createLinkRoute } from "./routes/create-link";
 import { fetchLinksRoute } from "./routes/fetch-links";
 import { deleteLinkRoute } from "./routes/delete-link";
 import { getLinkRoute } from "./routes/get-link";
+import { increaseHitRoute } from "./routes/increase-hit";
 
 const server = fastify();
 
@@ -51,6 +52,7 @@ server.register(createLinkRoute);
 server.register(fetchLinksRoute);
 server.register(deleteLinkRoute);
 server.register(getLinkRoute);
+server.register(increaseHitRoute);
 
 server.listen({ port: env.PORT, host: "0.0.0.0" }).then(() => {
     console.log("HTTP Server running!");
