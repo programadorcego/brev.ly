@@ -42,7 +42,7 @@ describe("Create a short link", () => {
         expect(sut.left).toBeInstanceOf(ShortLinkAlreadyExistsError);
     });
 
-    it("should not be possible to create a link with a malformed shortened URL", async () => {
+    it("should not be able to create a link with a malformed shortened URL", async () => {
         const sut = await createLink({
             originalLink: "https://meusite.com.br",
             shortLink: "link encurtado",

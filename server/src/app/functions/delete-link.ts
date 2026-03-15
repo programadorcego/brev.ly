@@ -19,15 +19,14 @@ export async function deleteLink(data: DeleteLinkSchema): Promise<Either<Resourc
         .from(schema.links)
         .where(eq(schema.links.shortLink, shortLink))
         .limit(1))[0];
-        
-        if (!link) {
-            return makeLeft(new ResourceNotFoundError());
-        }
 
-        await db
-            .delete(schema.links)
-            .where(eq(schema.links.shortLink, shortLink));
-        
+    if (!link) {
+        return makeLeft(new ResourceNotFoundError());
+    }
 
-            return makeRight({ id: link.id });
+    await db
+        .delete(schema.links)
+        .where(eq(schema.links.shortLink, shortLink));
+
+    return makeRight({ id: link.id });
 }

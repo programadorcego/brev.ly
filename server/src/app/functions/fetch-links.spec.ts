@@ -3,7 +3,6 @@ import { describe, expect, it } from "vitest";
 import { fetchLinks } from "./fetch-links";
 import { isRight, unwrapEither } from "@/infra/shared/either";
 import { db } from "@/infra/db";
-import { sql } from "drizzle-orm";
 import { randomUUID } from "node:crypto";
 import dayjs from "dayjs";
 
