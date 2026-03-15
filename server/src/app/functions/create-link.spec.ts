@@ -3,7 +3,7 @@ import { createLink } from "./create-link";
 import { isLeft, isRight } from "@/infra/shared/either";
 import { db } from "@/infra/db";
 import { schema } from "@/infra/db/schemas";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { ShortLinkAlreadyExistsError } from "./errors/short-link-already-exists";
 import { uuidv4 } from "uuidv7";
 import { InvalidShortLinkFormatError } from "./errors/invalid-short-link-format";
