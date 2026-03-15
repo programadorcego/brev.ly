@@ -5,6 +5,7 @@ import { hasZodFastifySchemaValidationErrors, jsonSchemaTransform, serializerCom
 import fastifySwagger from "@fastify/swagger";
 import { fastifySwaggerUi } from "@fastify/swagger-ui";
 import { createLinkRoute } from "./routes/create-link";
+import { fetchLinksRoute } from "./routes/fetch-links";
 
 const server = fastify();
 
@@ -45,6 +46,7 @@ server.register(fastifySwaggerUi, {
 });
 
 server.register(createLinkRoute);
+server.register(fetchLinksRoute);
 
 server.listen({ port: env.PORT, host: "0.0.0.0" }).then(() => {
     console.log("HTTP Server running!");
