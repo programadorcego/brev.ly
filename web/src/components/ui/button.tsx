@@ -41,7 +41,6 @@ export function Button({
 }: ButtonProps) {
 	return (
 		<button
-			type="button"
 			data-slot="button"
 			data-disabled={disabled ? '' : undefined}
 			className={twMerge(buttonVariants({ variant, size }), className)}
