@@ -4,12 +4,12 @@ import type { ComponentProps } from 'react'
 import { Button } from './ui/button'
 
 export interface LinkItemProps extends ComponentProps<'div'> {
-	title: string
-	url: string
-	clicks: number
+	original: string
+	short: string
+	hits: number
 }
 
-export function LinkItem({ title, url, clicks, className, ...props }: LinkItemProps) {
+export function LinkItem({ original, short, hits, className, ...props }: LinkItemProps) {
 	return (
 		<div
 			data-slot="link-item"
@@ -20,13 +20,13 @@ export function LinkItem({ title, url, clicks, className, ...props }: LinkItemPr
 			{...props}
 		>
 			<div className="flex flex-col">
-				<span className="text-sm font-medium text-primary">{title}</span>
-				<span className="text-xs text-foreground-subtle">{url}</span>
+				<span className="text-sm font-medium text-primary">{`${import.meta.env.VITE_FRONTEND_URL}/${short} `}</span>
+				<span className="text-xs text-foreground-subtle">{`${original} `}</span>
 			</div>
 
 			<div className="flex items-center gap-3">
 				<span className="text-xs text-foreground-subtle">
-					{clicks} acessos
+					{hits} acessos
 				</span>
 
 				<div className="flex gap-1">

@@ -2,22 +2,10 @@ import { LinksList } from "../components/links-list"
 import { Logo } from "../components/logo"
 import { NewLinkForm } from "../components/new-link-form"
 import logo from "../assets/logo.svg";
+import { useLinks } from "../hooks/links";
 
 export function Home() {
-	const links = [
-		{
-			id: '1',
-			title: 'brev.ly/Portfolio-Dev',
-			url: 'devsite.portfolio.com.br/devname-123456',
-			clicks: 30,
-		},
-		{
-			id: '2',
-			title: 'brev.ly/Linkedin-Profile',
-			url: 'linkedin.com/in/myprofile',
-			clicks: 15,
-		},
-	]
+	const { data: result, isLoading } = useLinks();
 
 	return (
 		<div className="min-h-screen bg-muted/40 p-6">
@@ -26,7 +14,8 @@ export function Home() {
 
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 					<NewLinkForm />
-					<LinksList links={links} />
+					
+					{result && !isLoading && <LinksList links={result.links} />}
 				</div>
 			</div>
 		</div>

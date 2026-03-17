@@ -3,13 +3,7 @@ import { Button } from "./ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { EmptyList } from "./empty-list"
 import { LinkItem } from "./link-item"
-
-export interface Link {
-	id: string
-	title: string
-	url: string
-	clicks: number
-}
+import type { Link } from "../api/fetch-links"
 
 export interface LinksListProps {
 	links: Link[]
@@ -35,9 +29,9 @@ export function LinksList({ links }: LinksListProps) {
 						{links.map((link) => (
 							<LinkItem
 								key={link.id}
-								title={link.title}
-								url={link.url}
-								clicks={link.clicks}
+								original={link.originalLink}
+								short={link.shortLink}
+								hits={link.hits}
 							/>
 						))}
 					</div>
