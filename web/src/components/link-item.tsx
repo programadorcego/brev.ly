@@ -13,6 +13,12 @@ export interface LinkItemProps extends ComponentProps<'div'> {
 export function LinkItem({ original, short, hits, className, ...props }: LinkItemProps) {
 	const { mutate: deleteLink, isPending } = useDeleteLink();
 
+	const shortLink = `${import.meta.env.VITE_FRONTEND_URL}/${short}`;
+
+	async function handleCopy() {
+		await navigator.clipboard.writeText(shortLink);
+	}
+
 	return (
 		<div
 			data-slot="link-item"
@@ -23,7 +29,7 @@ export function LinkItem({ original, short, hits, className, ...props }: LinkIte
 			{...props}
 		>
 			<div className="flex flex-col">
-				<span className="text-sm font-medium text-primary">{`${import.meta.env.VITE_FRONTEND_URL}/${short} `}</span>
+				<span className="text-sm font-medium text-primary">{shortLink}</span>
 				<span className="text-xs text-foreground-subtle">{`${original} `}</span>
 			</div>
 
@@ -33,7 +39,7 @@ export function LinkItem({ original, short, hits, className, ...props }: LinkIte
 				</span>
 
 				<div className="flex gap-1">
-					<Button variant="ghost" size="sm" aria-label="Copiar link">
+					<Button variant="ghost" size="sm" aria-label="Copiar link" onClick={handleCopy}>
 						<Copy />
 					</Button>
 

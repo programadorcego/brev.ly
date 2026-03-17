@@ -21,11 +21,11 @@ export function LinksList({ links }: LinksListProps) {
 				</Button>
 			</CardHeader>
 
-			<CardContent className="gap-0">
+			<CardContent className="flex min-h-[200px] items-center justify-center">
 				{links.length === 0 ? (
 					<EmptyList />
 				) : (
-					<div className="flex flex-col divide-y divide-border">
+					<div className="flex w-full flex-col divide-y divide-border">
 						{links.map((link) => (
 							<LinkItem
 								key={link.id}
