@@ -2,6 +2,7 @@ import { Copy, Trash2 } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
 import type { ComponentProps } from 'react'
 import { Button } from './ui/button'
+import { useDeleteLink } from '../hooks/useDeleteLink'
 
 export interface LinkItemProps extends ComponentProps<'div'> {
 	original: string
@@ -10,6 +11,8 @@ export interface LinkItemProps extends ComponentProps<'div'> {
 }
 
 export function LinkItem({ original, short, hits, className, ...props }: LinkItemProps) {
+	const { mutate: deleteLink, isPending } = useDeleteLink();
+
 	return (
 		<div
 			data-slot="link-item"
@@ -34,7 +37,7 @@ export function LinkItem({ original, short, hits, className, ...props }: LinkIte
 						<Copy />
 					</Button>
 
-					<Button variant="ghost" size="sm" aria-label="Excluir link">
+					<Button variant="ghost" size="sm" aria-label="Excluir link" onClick={() => deleteLink(short)} disabled={isPending}>
 						<Trash2 />
 					</Button>
 				</div>
