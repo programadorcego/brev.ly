@@ -2,7 +2,7 @@ import { Copy, Trash2 } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
 import type { ComponentProps } from 'react'
 import { Button } from './ui/button'
-import { useDeleteLink } from '../hooks/delete-linkink'
+import { useDeleteLink } from '../hooks/delete-link'
 
 export interface LinkItemProps extends ComponentProps<'div'> {
 	original: string
