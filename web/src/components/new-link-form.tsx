@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Label } from "./ui/Label";
 import { Button } from "./ui/button";
 import { z } from "zod";
-import { useCreateLink } from "../hooks/useCreateLink";
+import { useCreateLink } from "../hooks/create-link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 

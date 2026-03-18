@@ -25,7 +25,7 @@ export function LinksList({ links }: LinksListProps) {
 				{links.length === 0 ? (
 					<EmptyList />
 				) : (
-					<div className="flex w-full flex-col divide-y divide-border">
+					<div className="flex flex-col divide-y divide-border">
 						{links.map((link) => (
 							<LinkItem
 								key={link.id}
