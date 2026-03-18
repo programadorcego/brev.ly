@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteLink } from "../api/delete-link";
+import { toast } from "sonner";
 
 export function useDeleteLink() {
     const queryClient = useQueryClient();
@@ -10,11 +11,13 @@ export function useDeleteLink() {
         },
 
         onSuccess: () => {
+            toast("Link removido com sucesso");
+            
             queryClient.invalidateQueries({ queryKey: ["links"] });
         },
 
-        /*onError: () => {
+        onError: () => {
             toast.error("Erro ao deletar");
-        },*/
+        },
     });
 }
