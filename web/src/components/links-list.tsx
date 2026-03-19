@@ -19,8 +19,8 @@ export function LinksList({ links }: LinksListProps) {
 	async function handleExport() {
 		const { data } = await refetch();
 
-		if (data?.remoteUrl) {
-			await downloadUrl(data.remoteUrl);
+		if (data?.reportUrl) {
+			await downloadUrl(data.reportUrl);
 		}
 	}
 

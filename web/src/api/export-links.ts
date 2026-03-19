@@ -1,7 +1,7 @@
 import { api } from "../utils/axios";
 
 interface exportLinksResponse {
-    remoteUrl: string,
+    reportUrl: string,
 }
 
 export async function exportLinks() {
